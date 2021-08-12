@@ -12,6 +12,7 @@ export default props => {
         className="appointment__error-close"
         src="images/close.png"
         alt="Close"
+        onClick={props.onCancel}
       />
     </main>
   )

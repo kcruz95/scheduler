@@ -5,6 +5,7 @@ import Show from "components/Appointment/Show";
 import Form from "components/Appointment/Form";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status"
+import Error from 'components/Appointment/Error';
 import useVisualMode from 'hooks/useVisualMode';
 
 import "components/Appointment/styles.scss"
@@ -15,6 +16,7 @@ const CREATE = "CREATE";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const DELETING = "DELETING";
+const ERROR_DELETE = "ERROR_DELETE"
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -32,24 +34,20 @@ export default function Appointment(props) {
 
   function remove(event) {
     transition(DELETING, true);
-    // props
-    //   .cancelInterview(props.id)
-    //   .then(() => {
-    //     transition(EMPTY);
-    //   })
-    //   .catch(error => {
-    //     transition(ERROR_DELETE, true)
-    //   });
-    props.cancelInterview(props.id);
+    props
+      .cancelInterview(props.id)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch(error => {
+        transition(ERROR_DELETE, true)
+      });
   }
 
 
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {/* {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty onAdd={() =>
-        transition(CREATE)
-      } />} */}
       {
         mode === EMPTY && (
           <Empty
@@ -91,6 +89,13 @@ export default function Appointment(props) {
       {
         mode === DELETING && (
           <Status />
+        )
+      }
+      {
+        mode === ERROR_DELETE && (
+          <Error
+            onCancel={() => transition(SHOW)}
+          />
         )
       }
     </article>

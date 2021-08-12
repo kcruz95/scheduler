@@ -44,15 +44,14 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
-    // save to state and overwrite new appointments (save button)
-    setState({
-      ...state,
-      appointments
-    });
-    if (id) {
-      // return onDelete?
-    }
-    return null;
+
+    return axios.delete(`/api/appointments/${id}`).then((res) => {
+      // save to state and overwrite new appointments (save button)
+      setState({
+        ...state,
+        appointments
+      });
+    })
   }
 
   const setDay = day => {
