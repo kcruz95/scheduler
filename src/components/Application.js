@@ -35,7 +35,6 @@ export default function Application() {
   }
 
   function cancelInterview(id) {
-    console.log('hello');
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -61,7 +60,7 @@ export default function Application() {
   // in case it bugs out, originally referred to as "appointments"
   const appointmentsList = getAppointmentsForDay(state, state.day);
   const getInterviewersList = getInterviewersForDay(state, state.day);
-  console.log(getInterviewersList);
+  console.log('getInterviewersList', getInterviewersList);
   const schedule = appointmentsList.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 

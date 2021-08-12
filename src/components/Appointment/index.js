@@ -15,6 +15,7 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
+const SAVING = "SAVING";
 const DELETING = "DELETING";
 const ERROR_DELETE = "ERROR_DELETE"
 
@@ -29,6 +30,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    transition(SAVING);
     props.bookInterview(props.id, interview)
   }
 
@@ -43,6 +45,7 @@ export default function Appointment(props) {
         transition(ERROR_DELETE, true)
       });
   }
+
 
 
   return (
@@ -95,6 +98,17 @@ export default function Appointment(props) {
         mode === ERROR_DELETE && (
           <Error
             onCancel={() => transition(SHOW)}
+          />
+        )
+      }
+      {
+        mode === EDIT && (
+          <Form
+            name={props.interview.student}
+            interviewer={props.interview.interviewers}
+            interviewers={props.interviewers}
+            onCancel={() => transition(SHOW)}
+            onSave={save}
           />
         )
       }

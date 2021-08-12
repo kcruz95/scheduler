@@ -11,10 +11,11 @@ export function getAppointmentsForDay(state, givenDay) {
 }
 
 export function getInterviewersForDay(state, givenDay) {
-  const interviewersIDForDay = state.days.find(day => day.name === givenDay);
-  if (!state.days.length || !interviewersIDForDay) {
+  const daysObj = state.days.find(day => day.name === givenDay);
+  if (!state.days.length || !daysObj) {
     return [];
   }
+
   /*
   1) find day {} for the given day
   2) search for state.interviewers and match for ids in day.interviewers
@@ -25,11 +26,11 @@ export function getInterviewersForDay(state, givenDay) {
 
   for each day pass the appropriate interviewers[] that way the children are getting the [] and solves the error
   */
+  const interviewersIDForDay = daysObj.interviewers
 
-  const markedInterviewers = interviewersIDForDay.appointments.map((id) => {
-    return state.appointments[id];
-  });
-  return markedInterviewers;
+  return interviewersIDForDay.map(interviewerId => {
+    return state.interviewers[interviewerId]
+  })
 }
 
 export function getInterview(state, interview) {
@@ -37,7 +38,6 @@ export function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
-  // console.log(state);
 
   output['student'] = interview.student;
   output['interviewer'] = state.interviewers[interview.interviewer];
