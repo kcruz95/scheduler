@@ -17,21 +17,37 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
-const ERROR_DELETE = "ERROR_DELETE"
+const ERROR_DELETE = "ERROR_DELETE";
+const ERROR_SAVE = "ERROR_SAVE"
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  console.log(props);
+  console.log('props', props);
+
+  // function save(name, interviewer) {
+  //   const interview = {
+  //     student: name,
+  //     interviewer
+  //   };
+  //   transition(SAVING);
+  //   props.bookInterview(props.id, interview)
+  // }
 
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
+
     transition(SAVING);
-    props.bookInterview(props.id, interview)
+
+    console.log('props', props);
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(error => transition(ERROR_SAVE, true));
   }
 
   function remove(event) {
@@ -46,7 +62,13 @@ export default function Appointment(props) {
       });
   }
 
-
+  function destroy(event) {
+    transition(DELETING, true);
+    props
+      .cancelInterview(props.id)
+      .then(() => transition(EMPTY))
+      .catch(error => transition(ERROR_DELETE, true));
+  }
 
   return (
     <article className="appointment">
@@ -90,8 +112,13 @@ export default function Appointment(props) {
         )
       }
       {
+        mode === SAVING && (
+          <Status message="Saving" />
+        )
+      }
+      {
         mode === DELETING && (
-          <Status />
+          <Status message="Deleting" />
         )
       }
       {

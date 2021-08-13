@@ -8,7 +8,7 @@ export default props => {
   });
 
   return (
-    <li className={InterviewerClass}>
+    <li className={InterviewerClass} onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
