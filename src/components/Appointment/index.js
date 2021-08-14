@@ -24,16 +24,7 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  console.log('props', props);
-
-  // function save(name, interviewer) {
-  //   const interview = {
-  //     student: name,
-  //     interviewer
-  //   };
-  //   transition(SAVING);
-  //   props.bookInterview(props.id, interview)
-  // }
+  // console.log('props', props);
 
   function save(name, interviewer) {
     const interview = {
@@ -43,7 +34,7 @@ export default function Appointment(props) {
 
     transition(SAVING);
 
-    console.log('props', props);
+    // console.log('props', props);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
@@ -71,7 +62,7 @@ export default function Appointment(props) {
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {
         mode === EMPTY && (

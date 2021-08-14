@@ -22,7 +22,7 @@ export default function useApplicationData(props) {
   })
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
+    // console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -35,9 +35,9 @@ export default function useApplicationData(props) {
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const spotsRemaining = getSpotsRemaining(state, appointments);
-        console.log(spotsRemaining);
+        // console.log(spotsRemaining);
         const days = state.days.map(day => {
           if (day.name === state.day) {
             return { ...day, spots: spotsRemaining };
@@ -67,9 +67,9 @@ export default function useApplicationData(props) {
 
     return axios.delete(`/api/appointments/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const spotsRemaining = getSpotsRemaining(state, appointments);
-        console.log(spotsRemaining);
+        // console.log(spotsRemaining);
         const days = state.days.map(day => {
           if (day.name === state.day) {
             return { ...day, spots: spotsRemaining };
@@ -94,12 +94,14 @@ export default function useApplicationData(props) {
   useEffect(() => {
     Promise.all([
       axios.get("api/days"),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
+      axios.get('api/appointments'),
+      axios.get('api/interviewers')
     ]).then(all => {
       const days = all[0].data;
       const appointments = all[1].data;
       const interviewers = all[2].data;
+      // const [days, appointments, interviewers] = all;
+      // console.log(".......", days);
 
       setState(prev => ({ ...prev, days, appointments, interviewers }));
     });

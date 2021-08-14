@@ -13,7 +13,8 @@ export default function Application() {
   // in case it bugs out, originally referred to as "appointments"
   const appointmentsList = getAppointmentsForDay(state, state.day);
   const getInterviewersList = getInterviewersForDay(state, state.day);
-  console.log('getInterviewersList', getInterviewersList);
+  // console.log('getInterviewersList', getInterviewersList);
+
   const schedule = appointmentsList.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -26,6 +27,7 @@ export default function Application() {
         bookInterview={bookInterview}
         interviewers={getInterviewersList}
         cancelInterview={cancelInterview}
+        data-testid="appointment"
       />
     );
   });
