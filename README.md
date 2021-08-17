@@ -57,8 +57,8 @@ npm run storybook
 
 ### Cancelling an Appointment
 ![Cancelling]
-(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Deleting%20an%20Appointment.gif)
+(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Deleting%20an%20Appointment.gif?raw=true)
 
 ### Cypress Testing
 ![Cypress]
-(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Cypress%20Testing.gif)
+(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Cypress%20Testing.gif?raw=true)

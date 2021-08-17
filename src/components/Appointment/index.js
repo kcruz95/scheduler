@@ -24,7 +24,7 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  // console.log('props', props);
+
 
   function save(name, interviewer) {
     const interview = {
@@ -32,9 +32,13 @@ export default function Appointment(props) {
       interviewer
     };
 
+    if (!interviewer) {
+      // setError("Select an interviewer to save");
+      return;
+    }
+
     transition(SAVING);
 
-    // console.log('props', props);
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
