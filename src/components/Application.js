@@ -2,8 +2,7 @@ import "components/Application.scss";
 import Appointment from "components/Appointment";
 import DayList from "./DayList";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
@@ -13,7 +12,7 @@ export default function Application() {
   // in case it bugs out, originally referred to as "appointments"
   const appointmentsList = getAppointmentsForDay(state, state.day);
   const getInterviewersList = getInterviewersForDay(state, state.day);
-  // console.log('getInterviewersList', getInterviewersList);
+
 
   const schedule = appointmentsList.map((appointment) => {
     const interview = getInterview(state, appointment.interview);

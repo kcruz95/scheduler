@@ -39,8 +39,6 @@ describe('Application', () => {
     // 3. Click the "Add" button on the first empty appointment.
     const appointment = getAllByTestId(container, 'appointment')[0];
 
-    console.log(prettyDOM(container));
-
     fireEvent.click(getByAltText(appointment, 'Add'));
     // 4. Enter the name "Lydia Miller-Jones" into the input with the placeholder "Enter Student Name".
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {

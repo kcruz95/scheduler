@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function getSpotsRemaining(state, appointments) {
@@ -22,7 +22,7 @@ export default function useApplicationData(props) {
   })
 
   function bookInterview(id, interview) {
-    // console.log(id, interview);
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -35,9 +35,9 @@ export default function useApplicationData(props) {
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then((res) => {
-        // console.log(res);
+
         const spotsRemaining = getSpotsRemaining(state, appointments);
-        // console.log(spotsRemaining);
+
         const days = state.days.map(day => {
           if (day.name === state.day) {
             return { ...day, spots: spotsRemaining };
@@ -67,9 +67,9 @@ export default function useApplicationData(props) {
 
     return axios.delete(`/api/appointments/${id}`)
       .then((res) => {
-        // console.log(res);
+
         const spotsRemaining = getSpotsRemaining(state, appointments);
-        // console.log(spotsRemaining);
+
         const days = state.days.map(day => {
           if (day.name === state.day) {
             return { ...day, spots: spotsRemaining };
