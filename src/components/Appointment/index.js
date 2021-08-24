@@ -25,7 +25,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-
+  console.log('props', props);
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -55,14 +55,6 @@ export default function Appointment(props) {
       .catch(error => {
         transition(ERROR_DELETE, true)
       });
-  }
-
-  function destroy(event) {
-    transition(DELETING, true);
-    props
-      .cancelInterview(props.id)
-      .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -115,7 +107,7 @@ export default function Appointment(props) {
         mode === ERROR_SAVE && (
           <Error
             message="Saving Unsuccessful: Error"
-            onCancel={() => transition(SHOW)}
+            onCancel={back}
           />
         )
       }
@@ -136,7 +128,7 @@ export default function Appointment(props) {
         mode === EDIT && (
           <Form
             name={props.interview.student}
-            interviewer={props.interview.interviewers}
+            interviewer={props.interview.interviewer.id}
             interviewers={props.interviewers}
             onCancel={() => transition(SHOW)}
             onSave={save}
