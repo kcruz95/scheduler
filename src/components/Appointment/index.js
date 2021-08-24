@@ -108,17 +108,26 @@ export default function Appointment(props) {
       }
       {
         mode === SAVING && (
-          <Status message="Saving" />
+          <Status message="Saving..." />
+        )
+      }
+      {
+        mode === ERROR_SAVE && (
+          <Error
+            message="Saving Unsuccessful: Error"
+            onCancel={() => transition(SHOW)}
+          />
         )
       }
       {
         mode === DELETING && (
-          <Status message="Deleting" />
+          <Status message="Deleting..." />
         )
       }
       {
         mode === ERROR_DELETE && (
           <Error
+            message="Deleting Unsuccessful: Error"
             onCancel={() => transition(SHOW)}
           />
         )
