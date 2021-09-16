@@ -52,13 +52,10 @@ npm run storybook
 
 ## UX Demonstrations
 ### Registering an Appointment
-!["Registering"]
-(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Registering%20an%20Appointment.gif)
+!["Registering"](https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Registering%20an%20Appointment.gif?raw=true)
 
 ### Cancelling an Appointment
-!["Cancelling"]
-(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Deleting%20an%20Appointment.gif?raw=true)
+!["Cancelling"](https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Deleting%20an%20Appointment.gif?raw=true)
 
 ### Cypress Testing
-!["Cypress"]
-(https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Cypress%20Testing.gif?raw=true)
+!["Cypress"](https://github.com/kcruz95/scheduler/blob/master/docs/React%20Scheduler%20-%20Cypress%20Testing.gif?raw=true)
